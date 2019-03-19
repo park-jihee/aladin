@@ -8,54 +8,80 @@
   	<link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
   	<script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
     <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-		<title>Document</title>
+    
+    <title>Document</title>
 		<style>
+      header {
+        height: 50px;
+      }
+
+      header img {
+        width: 80px;
+        height: 45px;
+        float: left;
+      }
+
+      header input {
+        float: left;
+      }
+
 			.list-item {
-				height: 125px;
+				height: 100px;
+        margin-top: 10px;
 			}
+
+      .list {
+        overflow: scroll;
+      }
+
+      .list img {
+        width: 70px;
+        height: 90px;
+      }
+
+      .list-item__subtitle {
+        font-size: 13px;
+      }
+
 		</style>
 </head>
 <body>
 
-	<header></header>
+	<header>
+    <img src="img/logo.png" alt="">
+    <input id="searchtitle" type="search" value="" placeholder="Search" class="search-input" style="width: 200px;">
+  </header>
 	
-  <ul class="list">
-    <li class="list-item">
-      <div class="list-item__left"></div>
-      <div class="list-item__center">
-        <div class="list-item__title"></div>
-        <div class="list-item__subtitle"></div>
-      </div>
-    </li>
-	</ul>
-	
+  <ul class="list"></ul>
+  
 </body>
 <script>
     var ttbkey = 'ttbysasm21451849002';
+
     var params = '?' + encodeURIComponent('ttbkey') + '=' + ttbkey;
     params += '&' + encodeURIComponent('QueryType') + '=' + encodeURIComponent('Title');
     params += '&' + encodeURIComponent('Version') + '=' + encodeURIComponent('20131101');
-    
+
     function getinformation(search) {
         var search = search ? search : "";
         var url = 'http://www.aladin.co.kr/ttb/api/ItemSearch.aspx';
         url += params
-        url += '&' + encodeURIComponent('Query') + '=' + encodeURIComponent('백설공주');
+        url += '&' + encodeURIComponent('Query') + '=' + encodeURIComponent(search);
         console.log(url);
         $.get(url, function(res) {
             console.log(res);
             var items = $(res).find('item');
             for(var i = 0; i < items.length; i++) {
-                var title = $(items[i]).find('title').text();
-                var author = $(items[i]).find('author').text();
-                var description = $(items[i]).find('description').text();
-								var cover = $(items[i]).find('cover').text();
-								var customerReviewRank = $(items[i]).find('customerReviewRank').text();
-								var img = '<img src="' + cover + '">';
+              var title = $(items[i]).find('title').text();
+              var author = $(items[i]).find('author').text();
+              var description = $(items[i]).find('description').text();
+							var cover = $(items[i]).find('cover').text();
+              var isbn13 = $(items[i]).find('isbn13').text();
+							var code = '<li class="list-item"><div class="list-item__left"><img src="' + cover + '"></div>';
+              code += '<div class="list-item__center"><div class="list-item__title">' + title + '</div>';
+              code += '<div class="list-item__subtitle">' + author + '</div></div></li>';
+              $('.list').append(code);
 						}
-						$('.list-item__title').append(title);
-            $('.list-item__subtitle').append(author);
-            $('.list-item__left').append(img);
         });
     }
     getinformation();
@@ -65,5 +91,6 @@
         searchtitle = $(this).val();
         getinformation(searchtitle);
     });
+
 </script>
 </html>
