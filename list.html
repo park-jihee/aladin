@@ -5,10 +5,63 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }  
+    #list {
+    }
+    #list section {
+      height: 350px;
+    }
+    #list section .book {
+      height: 175px;
+    }
+    #list section .book h3 {
+      height: 50px;
+      line-height: 50px;
+    }
+    #list section .book ul {
+      height: 125px;
+    }
+    #list section .book li {
+      float: left;
+      list-style: none;
+      width: calc(100%/3);
+      height: 100%;
+    }
+  </style>
   <title>aladin list</title>
 </head>
 <body>
+  <div id="list">
+    <header></header>
+    <div class="main"></div>
+    <section>
+      <div class="book">
+        <h3>베스트 셀러</h3>
+        <ul id="bestseller"></ul>
+      </div>
+      <div class="book">
+        <h3>이 달의 도서</h3>
+        <ul id="new">
+          <li>
+            <img src="">
+          </li>
+          <li>
+            <img src="">
+          </li>
+          <li>
+            <img src="">
+          </li>
+        </ul>
+      </div>
+    </section>
+  </div>
   <script>
+    var list = '';
     function responseList(data) {
       var items = $(data).find('item');
       for (var i = 0; i < items.length; i++) {
@@ -21,7 +74,12 @@
         var cover = $(item).find('cover').text();
         var customerReviewRank = $(item).find('customerReviewRank').text();
         var bestRank = $(item).find('bestRank').text();
+
+        list += '<li>' +
+                  '<img src="' + cover + '" alt="' + title + '">' +
+                '</li>';
       }
+      $("#bestseller").append(list);
     } // responseList()
 
     function requestList() {
