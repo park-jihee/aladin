@@ -3,18 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+  	<link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+  	<script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
     <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <title>Document</title>
+		<title>Document</title>
+		<style>
+			.list-item {
+				height: 125px;
+				border: 1px solid black;
+			}
+		</style>
 </head>
 <body>
-    <form action="">
-        <input type="text" id="searchtitle" name="searchtitle">
-    </form>
-    <div class="ss"></div>
-    <div class="ss2"></div>
-    <div class="ss3"></div>
-    <div class="g"></div>
+
+	<header></header>
+	
+  <ul class="list">
+    <li class="list-item">
+      <div class="list-item__left"></div>
+      <div class="list-item__center">
+        <div class="list-item__title"></div>
+        <div class="list-item__subtitle"></div>
+      </div>
+    </li>
+	</ul>
+	
 </body>
 <script>
     var ttbkey = 'ttbysasm21451849002';
@@ -26,7 +41,7 @@
         var search = search ? search : "";
         var url = 'http://www.aladin.co.kr/ttb/api/ItemSearch.aspx';
         url += params
-        url += '&' + encodeURIComponent('Query') + '=' + encodeURIComponent(search);
+        url += '&' + encodeURIComponent('Query') + '=' + encodeURIComponent('백설공주');
         console.log(url);
         $.get(url, function(res) {
             console.log(res);
@@ -35,16 +50,13 @@
                 var title = $(items[i]).find('title').text();
                 var author = $(items[i]).find('author').text();
                 var description = $(items[i]).find('description').text();
-                var cover = $(items[i]).find('cover').text();
-                var sys = '<p>' + title + '</p>';
-                var sys2 = '<p>' + author + '</p>';
-                var sys3 = '<p>' + description + '</p>';
-                var img = '<img src="' + cover + '">';
-                $('.ss').append(sys);
-                $('.ss2').append(sys2);
-                $('.ss3').append(sys3);
-                $('.g').append(img);
-            }
+								var cover = $(items[i]).find('cover').text();
+								var customerReviewRank = $(items[i]).find('customerReviewRank').text();
+								var img = '<img src="' + cover + '">';
+						}
+						$('.list-item__title').append(title);
+            $('.list-item__subtitle').append(author);
+            $('.list-item__left').append(img);
         });
     }
     getinformation();
