@@ -4,9 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <title>Document</title>
 </head>
 <body>
-    
+    <input type="text" id="search">
+    <button onclick="TitleSearch();">검색</button>
+    <div class="book"></div>
 </body>
+<script>
+
+    function TitleSearch(){
+        var isbn = $('#search').val();
+        responseList(isbn);
+    }
+
+    function requestList() {
+        var key = 'ttbbrs07041856003';
+        var url = 'http://www.aladin.co.kr/ttb/api/ItemLookUp.aspx';    
+        url += '?' + encodeURIComponent('ttbkey') + '=' + encodeURIComponent(key);
+        url += '&' + encodeURIComponent('itemIdType') + '=' + encodeURIComponent('ISBN13');
+    }
+
+    function responseList(isbn){
+        var vsibn = isbn;
+        var title, link, author, priceSales, priceStandard;
+
+        url += encodeURIComponent('ItemId') + '=' + vsibn + '&output=xml';
+        
+        console.log(url);
+
+        $.get(url, function(res){
+            var items = $(res).find('item');
+            for (var i = 0; i < items.length; i++) {
+                console.log(items[i]);
+                title = $(items[i]).find('title').text();
+                link = $(items[i]).find('link').text(); 
+                author = $(items[i]).find('author').text(); 
+                priceSales = $(items[i]).find('priceSales').text(); 
+                priceStandard = $(items[i]).find('priceStandard').text(); 
+
+                var view = '<div class=\'view\'>';
+                view += '<p>' + "제목 : " + title + '</p>';
+                view += '<p><a href=\''+ link + '\'>구매하러 가기</a></p>';
+                view += '<p>' + "작가 : " + author + '</p>';
+                view += '<p>' + "세일가 : " + priceSales + '원</p>';
+                view += '<p>' + "정가 : " + priceStandard + '원</p>';
+                $(".book").append(view);
+            }
+        });
+    }
+</script>
 </html>
