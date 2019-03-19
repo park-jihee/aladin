@@ -1,12 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <title>aladin list</title>
 </head>
 <body>
-    
+  <script>
+    function responseList(data) {
+      var items = $(data).find('item');
+      for (var i = 0; i < items.length; i++) {
+        var item = $(items[i]);
+        var title = $(item).find('title').text();
+        var link = $(item).find('link').text();
+        var author = $(item).find('author').text();
+        var description = $(item).find('description').text();
+        var isbn13 = $(item).find('isbn13').text();
+        var cover = $(item).find('cover').text();
+        var customerReviewRank = $(item).find('customerReviewRank').text();
+        var bestRank = $(item).find('bestRank').text();
+      }
+    } // responseList()
+
+    function requestList() {
+      var key = 'ttbbrs1051305001';
+      var url = 'http://www.aladin.co.kr/ttb/api/ItemList.aspx';
+      url += '?' + encodeURIComponent('ttbkey') + '=' + encodeURIComponent(key);
+      url += '&' + encodeURIComponent('QueryType') + '=' + encodeURIComponent('Bestseller');
+      url += '&' + encodeURIComponent('MaxResults') + '=' + encodeURIComponent('10');
+      url += '&' + encodeURIComponent('start') + '=' + encodeURIComponent('1');
+      url += '&' + encodeURIComponent('SearchTarget') + '=' + encodeURIComponent('Book');
+      url += '&' + encodeURIComponent('output') + '=' + encodeURIComponent('xml');
+      url += '&' + encodeURIComponent('Version') + '=' + encodeURIComponent('20131101');
+
+      $.ajax({
+        url: url,
+        success: function(data) {
+          console.log(data);
+          responseList(data);
+        }
+      });
+    } // requestList()
+
+    requestList();
+  </script>
 </body>
 </html>
