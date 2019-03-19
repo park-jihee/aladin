@@ -1,37 +1,133 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
     <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            list-style: none;
+            font-family: 'Nanum Gothic', sans-serif;
+        }
+        .title{
+            font-size: 15px;
+        }
+        #img{
+            width: 300px;
+            height: 400px;
+            margin: 0 auto;
+            background-color: #e32e32;
+            margin-top: 20px;
+        }
+        #content{
+            width: 100%;
+            background-color: #e5e5e5;
+            margin-top: 20px;
+        }
+        #content p{
+            padding: 10px;
+        }
+        .book-img{
+            width: 100%;
+            height: 400px;
+            background-color: #aaaaaa;
+        }
+        .book-explain{
+            width: 100%;
+            height: 150px;
+            background-color: #e5e5e5;
+        }
+        .book-anthor{
+            width: 100%;
+            height: 100px;
+        }
+        .book-content{
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            padding-left: 20px; 
+            float: left;
+        }
+        .book-subcon{
+            width: 100px;
+            font-size: 13px;
+            float: left;
+        }
+        .book-price, .book-mileage{
+            width: 100%;
+            height: 50px;
+            font-size: 13px;
+        }
+        .book-sale{
+            width: 100%;
+            height: 50px;
+            font-size: 13px;
+            color: #e32e32;
+        }
+    </style>
 </head>
 <body>
-    <input type="text" id="search">
-    <button onclick="TitleSearch();">검색</button>
-    <div class="book"></div>
+    <header>
+        <input type="text" id="search">
+        <button onclick="TitleSearch();">검색</button>
+    </header>
+    <section>
+        <div class="book-img"> 
+            <img src="" alt="">
+        </div>
+        <div class="book-info">
+            <p class="book-title"></p>
+            <p class="book-author"><span></span></p>
+        </div>
+        <div class="book-explain">
+            <div class="book-content">
+                <div class="book-subcon">원가</div>
+                <div class="book-price"></div>
+            </div>
+            <div class="book-content">
+                <div class="book-subcon">판매가</div>
+                <div class="book-sale"></div>
+            </div>
+            <div class="book-content">
+                <div class="book-subcon">마일리지</div>
+                <div class="book-mileage"></div>
+            </div>
+        </div>
+    </section>
+
 </body>
 <script>
 
     function TitleSearch(){
         var isbn = $('#search').val();
-        responseList(isbn);
+        requestList(isbn);
     }
 
-    function requestList() {
+    function requestList(isbn) {
+        var vsibn = isbn;
         var key = 'ttbbrs07041856003';
         var url = 'http://www.aladin.co.kr/ttb/api/ItemLookUp.aspx';    
         url += '?' + encodeURIComponent('ttbkey') + '=' + encodeURIComponent(key);
         url += '&' + encodeURIComponent('itemIdType') + '=' + encodeURIComponent('ISBN13');
+        url += '&' + encodeURIComponent('ItemId') + '=' + vsibn + '&output=xml';
+
+     
+        responseList(url);
     }
 
-    function responseList(isbn){
-        var vsibn = isbn;
-        var title, link, author, priceSales, priceStandard;
+    function responseList(url){
+        var param = url;
+        var title, link, author, priceSales, priceStandard, milleage;
 
-        url += encodeURIComponent('ItemId') + '=' + vsibn + '&output=xml';
-        
         console.log(url);
 
         $.get(url, function(res){
@@ -40,18 +136,15 @@
                 console.log(items[i]);
                 title = $(items[i]).find('title').text();
                 link = $(items[i]).find('link').text(); 
-                author = $(items[i]).find('author').text(); 
+                author = $(items[i]).find('authors > author').text(); 
                 priceSales = $(items[i]).find('priceSales').text(); 
                 priceStandard = $(items[i]).find('priceStandard').text(); 
-
-                var view = '<div class=\'view\'>';
-                view += '<p>' + "제목 : " + title + '</p>';
-                view += '<p><a href=\''+ link + '\'>구매하러 가기</a></p>';
-                view += '<p>' + "작가 : " + author + '</p>';
-                view += '<p>' + "세일가 : " + priceSales + '원</p>';
-                view += '<p>' + "정가 : " + priceStandard + '원</p>';
-                $(".book").append(view);
+                mileage = $(items[i]).find('mileage').text(); 
             }
+                $('.book-title').append(title);
+                $('.book-author').append(author);
+                $('.book-sale').append(priceSales + '원');
+                $('.book-mileage').append(mileage + '원');
         });
     }
 </script>
