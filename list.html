@@ -41,9 +41,12 @@
       position: relative;
       width: 100%;
       height: 125px;
+      overflow: scroll;
     }
     #list section .book ul li {
-      float: left;
+      position: absolute;
+      top: 0; left: 0;
+      white-space: nowrap;
       list-style: none;
       width: calc(100%/3);
       height: 100%;
@@ -82,6 +85,7 @@
   <script>
     var queryType = ['Bestseller', 'ItemNewSpecial'];
     var list = '';
+    var left = 0;
     
     function responseList(data, queryType) {
       var items = $(data).find('item');
@@ -96,15 +100,16 @@
         var customerReviewRank = $(item).find('customerReviewRank').text();
         var bestRank = $(item).find('bestRank').text();
 
-        list += '<li>' +
+        if(queryType != 'Bestseller' && i == 0) { left = 0; }
+        list = '<li style="left:' + left + 'px">' +
                   '<div>' + 
                     '<img src="' + cover + '" alt="' + title + '">' +
                   '</div>' +
                 '</li>';
+        var type = queryType == 'Bestseller' ? '#bestSeller' : '#itemNewSpecial';
+        $(type).append(list);
+        left += $(".book li").width();
       }
-      var type = queryType == 'Bestseller' ? "#bestSeller" : "#itemNewSpecial"
-      $(type).append(list);
-      list = '';
     } // responseList()
 
     function requestList(queryType) {
@@ -112,7 +117,7 @@
       var url = 'http://www.aladin.co.kr/ttb/api/ItemList.aspx';
       url += '?' + encodeURIComponent('ttbkey') + '=' + encodeURIComponent(key);
       url += '&' + encodeURIComponent('QueryType') + '=' + encodeURIComponent(queryType);
-      url += '&' + encodeURIComponent('MaxResults') + '=' + encodeURIComponent('3');
+      url += '&' + encodeURIComponent('MaxResults') + '=' + encodeURIComponent('10');
       url += '&' + encodeURIComponent('start') + '=' + encodeURIComponent('1');
       url += '&' + encodeURIComponent('SearchTarget') + '=' + encodeURIComponent('Book');
       url += '&' + encodeURIComponent('output') + '=' + encodeURIComponent('xml');
