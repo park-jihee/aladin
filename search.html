@@ -6,7 +6,6 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="http://code.jquery.com/jquery-3.3.1.min.js"
     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <title>Document</title>
   <style>
     * {
@@ -85,6 +84,13 @@
 
 </body>
 <script>
+  var httpRequest;
+if (window.XMLHttpRequest) { // 모질라, 사파리, IE7+ ...
+    httpRequest = new XMLHttpRequest();
+} else if (window.ActiveXObject) { // IE 6 이하
+    httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
+}
+
   var ttbkey = 'ttbysasm21451849002';
 
   var params = '?' + encodeURIComponent('ttbkey') + '=' + ttbkey;
@@ -108,7 +114,7 @@
         var cover = $(items[i]).find('cover').text();
         var isbn13 = $(items[i]).find('isbn13').text();
         var code = '<li class="list-item">' +
-                      '<a href="">' +
+                      '<a href="ask.html" onclick="ask('+ isbn13 +');">' +
                         '<img src="' + cover + '">' +
                         '<div class="content">' +
                           '<p>' + title + '</p>' +
@@ -130,6 +136,20 @@
     searchtitle = $(this).val();
     getinformation(searchtitle);
   });
+
+  function ask(isbn13) {
+    console.log(isbn13);
+    $.ajax({
+      type: "POST",
+      url: "ask.html",
+      data: isbn13,
+      success: function(data) {
+        alert("성공");
+      }
+    });
+  }
+
+  
 </script>
 
 </html>
