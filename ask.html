@@ -58,10 +58,21 @@
 
     .book-img {
       width: 100%;
-      height: 400px;
-      background-color: #aaaaaa;
+      height: 300px;
+      margin: 0 auto;
     }
 
+    .book-main-img{
+        width: 200px;
+        height: 300px;
+        margin: 0 auto;
+    }
+
+    .book-main-img img{
+        width: 100%;
+        height: 250px;
+        margin: 25px 0px;
+    }
     .book-info {
       width: 100%;
       height: 100px;
@@ -111,18 +122,18 @@
 <body>
   <header>
     <div class="header-logo">
-      책 검색
+        잉키가 만드는 헤더
     </div>
   </header>
   <section>
     <div class="book-img">
-      <img src="" alt="">
-      책 이미지
+        <div class="book-main-img">
+
+        </div>
     </div>
     <div class="book-info">
-      책 제목, 작가
       <p class="book-title"></p>
-      <p class="book-author"><span></span></p>
+      <p class="book-author"></p>
     </div>
     <div class="book-explain">
       <div class="book-content">
@@ -148,7 +159,7 @@
     isbn = isbn.replace(/[\[\]]/g, "\\$&");
     var regex = new RegExp("[?&]" + isbn + "(=([^&#]*)|&|#|$)"),
         results = regex.exec(url);
-    requestList(results[2]);
+        requestList(results[2]);
   }
 
   function requestList(isbn) {
@@ -163,7 +174,7 @@
 
   function responseList(url) {
     var param = url;
-    var title, link, author, priceSales, priceStandard, milleage;
+    var title, link, author, cover, img, priceSales, priceStandard, milleage;
 
     $.get(param, function (res) {
       var items = $(res).find('item');
@@ -172,12 +183,16 @@
         title = $(items[i]).find('title').text();
         link = $(items[i]).find('link').text();
         author = $(items[i]).find('authors > author').text();
+        cover = $(items[i]).find('cover').text();
         priceSales = $(items[i]).find('priceSales').text();
         priceStandard = $(items[i]).find('priceStandard').text();
         mileage = $(items[i]).find('mileage').text();
+        img = "<img src=" + cover + ">"
       }
+      $('.book-main-img').append(img);
       $('.book-title').append(title);
       $('.book-author').append(author);
+      $('.book-price').append(priceStandard + '원');
       $('.book-sale').append(priceSales + '원');
       $('.book-mileage').append(mileage + '원');
     });
