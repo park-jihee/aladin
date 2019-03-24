@@ -1,52 +1,64 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="http://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-    }  
+    }
+
     #list {
       width: 100%;
     }
+
     #list header {
       width: 100%;
       height: 50px;
       background-color: #f2f2f2;
     }
+
     #list .main {
       position: relative;
       width: 100%;
       height: 200px;
       background-color: #c2c2c2;
     }
+
     #list .main img {
       position: absolute;
-      top: 0; left: 100%;
+      top: 0;
+      left: 100%;
       width: 100%;
       height: 100%;
     }
+
     #list .main img:first-child {
       left: 0;
     }
+
     #list section {
       width: 100%;
       height: 400px;
     }
+
     #list section .book {
       width: 100%;
       height: 200px;
     }
+
     #list section .book h3 {
       height: 50px;
       line-height: 50px;
       padding: 0 5vw;
     }
+
     #list section .book ul {
       position: relative;
       width: 100%;
@@ -54,19 +66,23 @@
       overflow-x: scroll;
       overflow-y: hidden;
     }
+
     #list section .book ul li {
       position: absolute;
-      top: 0; left: 0;
+      top: 0;
+      left: 0;
       white-space: nowrap;
       list-style: none;
       width: calc(100%/3);
       height: 100%;
     }
+
     #list section .book ul li div {
       width: 85px;
       height: 125px;
       margin: 0 auto;
     }
+
     #list section .book ul li div img {
       width: 85px;
       height: 125px;
@@ -74,6 +90,7 @@
   </style>
   <title>aladin list</title>
 </head>
+
 <body>
   <div id="list">
     <header>
@@ -101,7 +118,7 @@
     var queryType = ['Bestseller', 'ItemNewSpecial'];
     var list = '';
     var left = 0;
-    
+
     function responseList(data, queryType) {
       var items = $(data).find('item');
       for (var i = 0; i < items.length; i++) {
@@ -115,12 +132,14 @@
         var customerReviewRank = $(item).find('customerReviewRank').text();
         var bestRank = $(item).find('bestRank').text();
 
-        if(queryType != 'Bestseller' && i == 0) { left = 0; }
+        if (queryType != 'Bestseller' && i == 0) {
+          left = 0;
+        }
         list = '<li style="left:' + left + 'px">' +
-                  '<div>' + 
-                    '<img src="' + cover + '" alt="' + title + '">' +
-                  '</div>' +
-                '</li>';
+          '<div>' +
+          '<img src="' + cover + '" alt="' + title + '">' +
+          '</div>' +
+          '</li>';
         var type = queryType == 'Bestseller' ? '#bestSeller' : '#itemNewSpecial';
         $(type).append(list);
         left += $(".book li").width();
@@ -140,7 +159,7 @@
 
       $.ajax({
         url: url,
-        success: function(data) {
+        success: function (data) {
           responseList(data, queryType);
         }
       });
@@ -154,19 +173,23 @@
     var img = $(".main img");
     var last = img.length - 1;
     var ino = 0;
-    
+
 
     function slide() {
-      $(img[ino]).siblings('img').css({'left': '100%'});
-      
+      $(img[ino]).siblings('img').css({
+        'left': '100%'
+      });
+
       $(img[ino]).animate({
         'left': '-100%'
-      }, 1500, function() {
-        $(this).css({'left': '100%'});
+      }, 1500, function () {
+        $(this).css({
+          'left': '100%'
+        });
       });
 
       ino++;
-      if(ino > last) ino = 0;
+      if (ino > last) ino = 0;
 
       $(img[ino]).animate({
         'left': 0,
@@ -176,4 +199,5 @@
     setInterval(slide, 1500);
   </script>
 </body>
+
 </html>
