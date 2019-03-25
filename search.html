@@ -18,17 +18,48 @@
     }
 
     header {
-      height: 50px;
+      padding: 10px 5%;
+      height: 60px;
     }
 
-    header img {
-      width: 80px;
-      height: 45px;
-      float: left;
+    #logo {
+      width: 70px;
+      height: 40px;
     }
 
-    header input {
+    #search_box {
+      width: 70%;
+      height: 35px;
+      float: right;
+      border-radius: 20px;
+      background-color: rgb(219, 219, 219);
+      padding: 5px 10px;
+      margin-top: 5px;
+    }
+
+    #search_box input {
+      width: 90%;
       float: left;
+      border: 0px;
+      outline: none;
+      font-size: 16px;
+      padding: 3px;
+      background-color: rgb(219, 219, 219);
+    }
+
+    #search_box button {
+      width: 10%;
+      height: 100%;
+      float: right;
+      border: 0px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    #search_box button i {
+      text-align: center;
+      display: inline-block;
+      vertical-align: middle;
     }
 
     .result {
@@ -69,31 +100,33 @@
       padding-bottom: 10px;
     }
 
-    span.star-prototype, span.star-prototype > * {
-      height: 16px; 
+    span.star-prototype,
+    span.star-prototype>* {
+      height: 16px;
       background: url(http://i.imgur.com/YsyS5y8.png) 0 -16px repeat-x;
       width: 80px;
       display: inline-block;
     }
- 
-    span.star-prototype > * {
+
+    span.star-prototype>* {
       background-position: 0 0;
-      max-width:80px; 
+      max-width: 80px;
     }
-    
   </style>
 </head>
 
 <body>
   <header>
-    <img src="img/logo.png" alt="">
-    <input id="title" type="search" value="" placeholder="제목을 입력하세요" class="search-input" style="width: 200px; height: 50px;">
+    <a href="list.html"><img id="logo" src="img/logo.gif"></a>
+    <div id="search_box">
+      <input id="title" type="search" value="" class="search-input" placeholder="검색">
+      <button><i class="fas fa-search"></i></button>
+    </div>
   </header>
   <div class="result"></div>
   <ul class="list" id="list"></ul>
 </body>
 <script>
-
   $('#title').on('change', function () {
     var title = $(this).val();
     getinformation(title);
@@ -139,6 +172,14 @@
     location.href = "ask.html?isbn=" + isbn;
   }
 
+  $.fn.generateStars = function () {
+    return this.each(function (i, e) {
+      $(e).html($('<span/>').width($(e).text() * 16));
+    });
+  };
+
+  // 숫자 평점을 별로 변환하도록 호출하는 함수
+  $('.star-prototype').generateStars();
 </script>
 
 </html>
