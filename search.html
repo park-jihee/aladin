@@ -58,7 +58,7 @@
     }
 
     .content {
-      padding-top: 18px;
+      padding-top: 10px;
       padding-left: 80px;
       height: 90px;
     }
@@ -69,8 +69,21 @@
       overflow: hidden;
       padding-bottom: 10px;
     }
+
+    span.star-prototype, span.star-prototype > * {
+    height: 16px; 
+    background: url(http://i.imgur.com/YsyS5y8.png) 0 -16px repeat-x;
+    width: 80px;
+    display: inline-block;
+}
+ 
+span.star-prototype > * {
+    background-position: 0 0;
+    max-width:80px; 
+}
   </style>
 </head>
+
 <body>
   <header>
     <img src="img/logo.png" alt="">
@@ -102,14 +115,16 @@
         var title = $(items[i]).find('title').text();
         var author = $(items[i]).find('author').text();
         var cover = $(items[i]).find('cover').text();
+        var customerReviewRank = $(items[i]).find('customerReviewRank').text();
         var isbn13 = $(items[i]).find('isbn13').text();
         var code = '<li class="list-item" onclick="ask(' + isbn13 + ');">' +
-                     '<img src="' + cover + '">' +
-                      '<div class="content">' +
-                        '<p>' + title + '</p>' +
-                        '<p>' + author + '</p>' +
-                      '</div>' +
-                    '</li>';
+          '<img src="' + cover + '">' +
+          '<div class="content">' +
+          '<p>' + title + '</p>' +
+          '<p>' + author + '</p>' +
+          '<span class="star-prototype">' + 3 + '</span>' +
+          '</div>' +
+          '</li>';
         $('.list').append(code);
         if (i == items.length - 1) {
           $('.result').append(result);
@@ -122,6 +137,13 @@
     var isbn = isbn13;
     location.href = "ask.html?isbn=" + isbn;
   }
+
+  $.fn.generateStars = function() {
+    return this.each(function(i,e){$(e).html($('<span/>').width($(e).text()*16));});
+  };
+
+  // 숫자 평점을 별로 변환하도록 호출하는 함수
+  $('.star-prototype').generateStars();
 </script>
 
 </html>
