@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>header</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    header{
+        padding: 10px 5%;
+        height: 60px;
+    }
+    #logo{
+        width: 70px;
+        height: 40px;
+    }
+    #search_box{
+        width: 70%;
+        height: 35px;
+        float: right;
+        border-radius: 20px;
+        background-color: rgb(219, 219, 219);
+        padding: 5px 10px;
+        margin-top: 5px;
+    }
+    #search_box input{
+        width: 90%;
+        float: left;
+        border: 0px;
+        outline: none;
+        font-size: 16px;
+        padding: 3px;
+        background-color: rgb(219, 219, 219);
+    }
+    #search_box button{
+        width: 10%;
+        height: 100%;
+        float: right;
+        border: 0px;
+        outline: none;
+        cursor: pointer;
+    }
+    #search_box button i{
+        text-align: center;
+        display: inline-block;
+        vertical-align: middle;
+    }
+</style>
+<body>
+    <header>
+        <img id="logo" src="img/logo.gif">
+        <div id="search_box">
+            <input type="text" placeholder="검색">
+            <button><i class="fas fa-search"></i></button>
+        </div>
+    </header>
+</body>
+</html>
