@@ -104,13 +104,12 @@
         var cover = $(items[i]).find('cover').text();
         var isbn13 = $(items[i]).find('isbn13').text();
         var code = '<li class="list-item" onclick="ask(' + isbn13 + ');">' +
-          '<img src="' + cover + '">' +
-          '<div class="content">' +
-          '<p>' + title + '</p>' +
-          '<p>' + author + '</p>' +
-          '</div>' +
-          '</li>' +
-          '</a>';
+                     '<img src="' + cover + '">' +
+                      '<div class="content">' +
+                        '<p>' + title + '</p>' +
+                        '<p>' + author + '</p>' +
+                      '</div>' +
+                    '</li>';
         $('.list').append(code);
         if (i == items.length - 1) {
           $('.result').append(result);
