@@ -48,13 +48,23 @@ function getinformation(title) {
         '<div class="content">' +
         '<p>' + title + '</p>' +
         '<p>' + author + '</p>' +
-        '<span class="star-prototype">' + 3 + '</span>' +
+        '<span class="star-prototype"></span>' +
+        '<input id="star" type="hidden" value="' + customerReviewRank + '">';
         '</div>' +
         '</li>';
       $('.list').append(code);
       if (i == items.length - 1) {
         $('.result').append(result);
       }
+    }
+    var starProto = $('#star');
+    var star = '';
+    for (let i = 0; i < starProto.length; i++) {
+      console.log($(starProto)[i].val);
+      for (let j = 0; j < starProto; j++) {
+        star += "<img src='./img/star.png' width='20px'/>"
+      }
+      $('.star-prototype').append(star);
     }
   });
 }
