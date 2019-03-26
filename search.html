@@ -157,7 +157,7 @@
         var title = $(items[i]).find('title').text();
         var author = $(items[i]).find('author').text();
         var cover = $(items[i]).find('cover').text();
-        var customerReviewRank = $(items[i]).find('customerReviewRank').text();
+        var customerReviewRank = $(items[i]).find('customerReviewRank').text() * 0.5;
         var isbn13 = $(items[i]).find('isbn13').text();
         var code = '<li class="list-item" onclick="ask(' + isbn13 + ');">' +
           '<img src="' + cover + '">' +
