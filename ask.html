@@ -10,10 +10,10 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-    </script>
+        </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-    </script>
+        </script>
     <title>Document</title>
     <style>
         * {
@@ -194,18 +194,19 @@
             padding: 30px 20px;
         }
 
-        .book-introduce h1 {
+        .book-introduce h1 , .book-shop h1{
             font-size: 16px;
             font-weight: bolder;
+            margin-bottom: 20px;
         }
 
         .book-introduce p {
             font-size: 12.5px;
             max-height: 60px;
-				overflow: hidden;
-				display: -webkit-box;
-				-webkit-line-clamp: 3;
-				-webkit-box-orient: vertical;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
         }
 
         footer {
@@ -253,26 +254,18 @@
             float: right;
             background-color: #17a2b8;
         }
-        .book-used{
-            width: 100%;
-            height: 50px;
+
+        .book-shop {
+            padding: 20px;
+            margin-bottom: 70px;
         }
-        .book-used-btn{
-            width: 120px;
-            height: 30px;
-            font-size: 13.5px;
-            font-weight: bolder;
-            text-align: center;
-            line-height: 27px;
-            border-radius: 7px;
-            border: 2px solid #e32e32;
-            color: #e32e32;
-            margin-left: 20px;
+
+        .book-shop a{
+            color: #000;
+            font-size: 14px;
         }
-        .book-shop{
-            width: 100%;
-            height: 300px;
-            border: 1px solid orange;
+        .book-shop P{
+            margin-bottom: 15px;
         }
     </style>
 </head>
@@ -281,7 +274,7 @@
     <header>
         <a href="list.html"><img id="logo" src="img/logo.gif"></a>
         <div id="search_box">
-            <input type="text" placeholder="검색">
+            <input type="text" placeholder="검색" id="title">
             <button><img id="search_icon"
                     src="https://cdn1.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-512.png"></button>
         </div>
@@ -314,13 +307,9 @@
             <h1>책소개</h1>
             <p></p>
         </div>
-        <div class="book-used">
-            <div class="book-used-btn" onclick="used();">
-                중고매장 찾기 >
-            </div>
-        </div>
         <div class="book-shop">
-                <!--9788996819066-->
+            <!--9788996819066-->
+            <h1>중고매장</h1>
         </div>
     </section>
     <footer>
@@ -387,12 +376,32 @@
         });
     }
 
-    function used(isbn){
-        var isbn = isbn ? isbn : "";
-        if(!isbn){
-            alert("중고상품이 존재하지 않습니다.");
-        }
+    function used(isbn) {
+        var isbn13 = isbn ? isbn : true;
+        var ServiceKey = "ttbkkn202841906001";
+        var url = 'http://www.aladin.co.kr/ttb/api/ItemOffStoreList.aspx'; /*URL*/
+        url += '?' + encodeURIComponent('ttbkey') + '=' + encodeURIComponent(ServiceKey);
+        url += '&' + encodeURIComponent('itemIdType') + '=' + encodeURIComponent('ISBN13');
+        url += '&' + encodeURIComponent('ItemId') + '=' + encodeURIComponent(isbn13);
 
+        showInfo(url);
+    }
+
+    function showInfo(url) {
+        var info = url;
+
+        $.get(info, function (res) {
+            var items = $(res).find("offStoreInfo");
+
+            for (let i = 0; i < items.length; i++) {
+                console.log(items[i]);
+                var offName = $(items[i]).find('offName').text();
+                var link = $(items[i]).find('link').text();
+                var view = "<p><a href=" + link + ">" + offName + "</a></p>";
+
+                $('.book-shop').append(view);
+            }
+        });
     }
 </script>
 
