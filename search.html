@@ -131,8 +131,12 @@
   <ul class="list" id="list"></ul>
 </body>
 <script>
+  var title = $('#title').val();
+
+  if(title) getinformation(title);
+
   $('#title').on('change', function () {
-    var title = $(this).val();
+    title = $(this).val();
     getinformation(title);
   });
 
