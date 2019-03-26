@@ -1,280 +1,144 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="http://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <title>Document</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            list-style: none;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="http://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      list-style: none;
+    }
 
-        header {
-            width: 100%;
-            height: 60px;
-            padding: 5px 10px;
-        }
+    header {
+      width: 100%;
+      height: 60px;
+      padding: 5px 10px;
+    }
 
-        #center {
-            margin: 0 auto;
-        }
+    #center {
+      margin: 0 auto;
+    }
 
-        #logo {
-            width: 70px;
-            height: 40px;
-            float: left;
-            margin-right: 20px;
-        }
+    #logo {
+      width: 70px;
+      height: 40px;
+      float: left;
+      margin-right: 20px;
+    }
 
-        @media(max-width:321px) {
-            #logo {
-                margin-right: 10px;
-            }
-        }
+    @media(max-width:321px) {
+      #logo {
+        margin-right: 10px;
+      }
+    }
 
-        #search_box {
-            width: calc(100% - 20px - 70px - 10px);
-            height: 35px;
-            float: left;
-            border-radius: 20px;
-            background-color: rgb(219, 219, 219);
-            padding: 5px 20px;
-            margin-top: 5px;
-        }
+    #search_box {
+      width: calc(100% - 20px - 70px - 10px);
+      height: 35px;
+      float: left;
+      border-radius: 20px;
+      background-color: rgb(219, 219, 219);
+      padding: 5px 20px;
+      margin-top: 5px;
+    }
 
-        @media(max-width:321px) {
-            #search_box {
-                width: 70%;
-            }
-        }
+    @media(max-width:321px) {
+      #search_box {
+        width: 70%;
+      }
+    }
 
-        #search_box input {
-            width: 90%;
-            float: left;
-            border: 0px;
-            outline: none;
-            font-size: 16px;
-            background-color: rgb(219, 219, 219);
-            padding-top: 5px;
-        }
+    #search_box input {
+      width: 90%;
+      float: left;
+      border: 0px;
+      outline: none;
+      font-size: 16px;
+      background-color: rgb(219, 219, 219);
+      padding-top: 5px;
+    }
 
-        #search_box button {
-            width: 10%;
-            height: 100%;
-            float: right;
-            border: 0px;
-            outline: none;
-            cursor: pointer;
-        }
+    #search_box button {
+      width: 10%;
+      height: 100%;
+      float: right;
+      border: 0px;
+      outline: none;
+      cursor: pointer;
+    }
 
-        #search_box button i {
-            text-align: center;
-            display: inline-block;
-            vertical-align: middle;
-        }
+    #search_box button i {
+      text-align: center;
+      display: inline-block;
+      vertical-align: middle;
+    }
 
-        #search_icon {
-            width: 25px;
-            height: 25px;
-            float: right;
-        }
+    #search_icon {
+      width: 25px;
+      height: 25px;
+      float: right;
+    }
 
-        .result {
-            text-align: center;
-            margin-bottom: 10px;
-            font-size: 13px;
-        }
+    .result {
+      text-align: center;
+      margin-bottom: 10px;
+      font-size: 13px;
+    }
 
-        .result b {
-            color: rgb(218, 39, 39);
-        }
-        .list {
-            margin: 0 10px;
-        }
+    .result b {
+      color: rgb(218, 39, 39);
+    }
 
-        .list-item {
-            width: 100%;
-            margin-bottom: 10px;
-        }
+    .list {
+      margin: 0 10px;
+    }
 
-        .list-item img {
-            width: 70px;
-            height: 90px;
-            float: left;
-        }
+    .list-item {
+      width: 100%;
+      margin-bottom: 10px;
+    }
 
-        .content {
-            padding-top: 10px;
-            padding-left: 80px;
-            height: 90px;
-        }
+    .list-item img {
+      width: 70px;
+      height: 90px;
+      float: left;
+    }
 
-        .content p {
-            width: 100%;
-            height: 25px;
-            overflow: hidden;
-            padding-bottom: 10px;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
+    .content {
+      padding-top: 10px;
+      padding-left: 80px;
+      height: 90px;
+    }
 
-        span.star-prototype,
-        span.star-prototype>* {
-            height: 16px;
-            background: url(http://i.imgur.com/YsyS5y8.png) 0 -16px repeat-x;
-            width: 80px;
-            display: inline-block;
-        }
-
-        span.star-prototype>* {
-            background-position: 0 0;
-            max-width: 80px;
-        }
-    </style>
-
+    .content p {
+      width: 100%;
+      height: 25px;
+      overflow: hidden;
+      padding-bottom: 10px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
   </style>
 </head>
 <body>
-    <header>
-        <a href="list.html"><img id="logo" src="img/logo.gif"></a>
-        <div id="search_box">
-            <input type="text" placeholder="검색" id="title">
-            <button><img id="search_icon"
-                    src="https://cdn1.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-512.png"></button>
-        </div>
-    </header>
-    <div class="result"></div>
-    <ul class="list" id="list"></ul>
+  <header>
+    <a href="list.html"><img id="logo" src="img/logo.gif"></a>
+    <div id="search_box">
+      <input type="text" placeholder="검색" id="title">
+      <button>
+        <img id="search_icon" src="https://cdn1.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-512.png">
+      </button>
+    </div>
+  </header>
+  <div class="result"></div>
+  <ul class="list" id="list"></ul>
 </body>
-<script>
-    var title = $('#title').val();
-
-    if (title) getinformation(title);
-
-    $('#title').on('change', function () {
-        title = $(this).val();
-        getinformation(title);
-    });
-
-    function getinformation(title) {
-        var search = title ? title : "";
-        var ttbkey = 'ttbysasm21451849002';
-        var url = 'http://www.aladin.co.kr/ttb/api/ItemSearch.aspx';
-        url += '?' + encodeURIComponent('ttbkey') + '=' + ttbkey;
-        url += '&' + encodeURIComponent('QueryType') + '=' + encodeURIComponent('Title');
-        url += '&' + encodeURIComponent('Version') + '=' + encodeURIComponent('20131101');
-        url += '&' + encodeURIComponent('Query') + '=' + encodeURIComponent(search);
-
-        $.get(url, function (res) {
-            console.log(res);
-            var items = $(res).find('item');
-            var result = '"<b>' + search + '</b>" 검색결과 입니다.';
-            for (var i = 0; i < items.length; i++) {
-                var title = $(items[i]).find('title').text();
-                var author = $(items[i]).find('author').text();
-                var cover = $(items[i]).find('cover').text();
-                var customerReviewRank = $(items[i]).find('customerReviewRank').text();
-                var isbn13 = $(items[i]).find('isbn13').text();
-                var code = '<li class="list-item" onclick="ask(' + isbn13 + ');">' +
-                    '<img src="' + cover + '">' +
-                    '<div class="content">' +
-                    '<p>' + title + '</p>' +
-                    '<p>' + author + '</p>' +
-                    '<span class="star-prototype">' + 3 + '</span>' +
-                    '</div>' +
-                    '</li>';
-                $('.list').append(code);
-                if (i == items.length - 1) {
-                    $('.result').append(result);
-                }
-            }
-        });
-    }
-
-    function ask(isbn13) {
-        var isbn = isbn13;
-        location.href = "ask.html?isbn=" + isbn;
-    }
-
-    $.fn.generateStars = function () {
-        return this.each(function (i, e) {
-            $(e).html($('<span/>').width($(e).text() * 16));
-        });
-    };
-
-    // 숫자 평점을 별로 변환하도록 호출하는 함수
-    $('.star-prototype').generateStars();
-
-  var title = '';
-  getThisTitle();
-
-  window.addEventListener("hashchange", function () {
-    getThisTitle();
-  }, false);
-
-  function getThisTitle() {
-    title = decodeURI(location.href.split('#')[1]);
-    if (title != undefined) {
-      $('#title').val(title);
-      getinformation(title);
-    }
-  }
-
-  $('#title').on('change', function () {
-    var thisTitle = $(this).val();
-    if (title != thisTitle) {
-      location.href = 'search.html#' + encodeURI(thisTitle);
-      title = thisTitle;
-    }
-    getinformation(title);
-  });
-
-  function getinformation(title) {
-    $('#title').val('')
-    $('.list li').remove();
-    $('.result').text('');
-
-    var search = title ? title : "";
-    var ttbkey = 'ttbysasm21451849002';
-    var url = 'http://www.aladin.co.kr/ttb/api/ItemSearch.aspx';
-    url += '?' + encodeURIComponent('ttbkey') + '=' + ttbkey;
-    url += '&' + encodeURIComponent('QueryType') + '=' + encodeURIComponent('Title');
-    url += '&' + encodeURIComponent('Version') + '=' + encodeURIComponent('20131101');
-    url += '&' + encodeURIComponent('Query') + '=' + encodeURIComponent(search);
-
-    $.get(url, function (res) {
-      var items = $(res).find('item');
-      var result = '"<b>' + search + '</b>" 검색결과 입니다.';
-      for (var i = 0; i < items.length; i++) {
-        var title = $(items[i]).find('title').text();
-        var author = $(items[i]).find('author').text();
-        var cover = $(items[i]).find('cover').text();
-        var customerReviewRank = $(items[i]).find('customerReviewRank').text() * 0.5;
-        var isbn13 = $(items[i]).find('isbn13').text();
-        var code = '<li class="list-item" onclick="ask(' + isbn13 + ');">' +
-          '<img src="' + cover + '">' +
-          '<div class="content">' +
-          '<p>' + title + '</p>' +
-          '<p>' + author + '</p>' +
-          '<span class="star-prototype">' + 3 + '</span>' +
-          '</div>' +
-          '</li>';
-        $('.list').append(code);
-        if (i == items.length - 1) {
-          $('.result').append(result);
-        }
-      }
-    });
-  }
-
-  function ask(isbn) {
-    location.href = "ask.html?isbn=" + isbn;
-  }
-</script>
+<script src="./js/script.js"></script>
 </html>

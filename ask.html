@@ -1,408 +1,405 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-        </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-        </script>
-    <title>Document</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            list-style: none;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      list-style: none;
+    }
 
-        header {
-            width: 100%;
-            height: 60px;
-            padding: 5px 10px;
-        }
+    header {
+      width: 100%;
+      height: 60px;
+      padding: 5px 10px;
+    }
 
-        #center {
-            margin: 0 auto;
-        }
+    #center {
+      margin: 0 auto;
+    }
 
-        #logo {
-            width: 70px;
-            height: 40px;
-            float: left;
-            margin-right: 20px;
-        }
+    #logo {
+      width: 70px;
+      height: 40px;
+      float: left;
+      margin-right: 20px;
+    }
 
-        @media(max-width:321px) {
-            #logo {
-                margin-right: 10px;
-            }
-        }
+    @media(max-width:321px) {
+      #logo {
+        margin-right: 10px;
+      }
+    }
 
-        #search_box {
-            width: calc(100% - 20px - 70px - 10px);
-            height: 35px;
-            float: left;
-            border-radius: 20px;
-            background-color: rgb(219, 219, 219);
-            padding: 5px 20px;
-            margin-top: 5px;
-        }
+    #search_box {
+      width: calc(100% - 20px - 70px - 10px);
+      height: 35px;
+      float: left;
+      border-radius: 20px;
+      background-color: rgb(219, 219, 219);
+      padding: 5px 20px;
+      margin-top: 5px;
+    }
 
-        @media(max-width:321px) {
-            #search_box {
-                width: 70%;
-            }
-        }
+    @media(max-width:321px) {
+      #search_box {
+        width: 70%;
+      }
+    }
 
-        #search_box input {
-            width: 90%;
-            float: left;
-            border: 0px;
-            outline: none;
-            font-size: 16px;
-            background-color: rgb(219, 219, 219);
-        }
+    #search_box input {
+      width: 90%;
+      float: left;
+      border: 0px;
+      outline: none;
+      font-size: 16px;
+      background-color: rgb(219, 219, 219);
+    }
 
-        #search_box button {
-            width: 10%;
-            height: 100%;
-            float: right;
-            border: 0px;
-            outline: none;
-            cursor: pointer;
-        }
+    #search_box button {
+      width: 10%;
+      height: 100%;
+      float: right;
+      border: 0px;
+      outline: none;
+      cursor: pointer;
+    }
 
-        #search_box button i {
-            text-align: center;
-            display: inline-block;
-            vertical-align: middle;
-        }
+    #search_box button i {
+      text-align: center;
+      display: inline-block;
+      vertical-align: middle;
+    }
 
-        #search_icon {
-            width: 25px;
-            height: 25px;
-            float: right;
-        }
+    #search_icon {
+      width: 25px;
+      height: 25px;
+      float: right;
+    }
 
-        .title {
-            font-size: 15px;
-        }
+    .title {
+      font-size: 15px;
+    }
 
-        #img {
-            width: 300px;
-            height: 400px;
-            margin: 0 auto;
-            background-color: #e32e32;
-            margin-top: 20px;
-        }
+    #img {
+      width: 300px;
+      height: 400px;
+      margin: 0 auto;
+      background-color: #e32e32;
+      margin-top: 20px;
+    }
 
-        #content {
-            width: 100%;
-            background-color: #e5e5e5;
-            margin-top: 20px;
-        }
+    #content {
+      width: 100%;
+      background-color: #e5e5e5;
+      margin-top: 20px;
+    }
 
-        #content p {
-            padding: 10px;
-        }
+    #content p {
+      padding: 10px;
+    }
 
-        .book-img {
-            width: 100%;
-            height: 300px;
-            margin: 0 auto;
-        }
+    .book-img {
+      width: 100%;
+      height: 300px;
+      margin: 0 auto;
+    }
 
-        .book-main-img {
-            width: 200px;
-            height: 300px;
-            margin: 0 auto;
-        }
+    .book-main-img {
+      width: 200px;
+      height: 300px;
+      margin: 0 auto;
+    }
 
-        .book-main-img img {
-            width: 100%;
-            height: 260px;
-            margin: 20px 0px;
-        }
+    .book-main-img img {
+      width: 100%;
+      height: 260px;
+      margin: 20px 0px;
+    }
 
-        .book-info {
-            width: 100%;
-            height: 100px;
-        }
+    .book-info {
+      width: 100%;
+      height: 100px;
+    }
 
-        .book-explain {
-            width: 100%;
-            height: 150px;
-            background-color: #f3f3f3;
-        }
+    .book-explain {
+      width: 100%;
+      height: 150px;
+      background-color: #f3f3f3;
+    }
 
-        .book-anthor {
-            width: 100%;
-            height: 100px;
-        }
+    .book-anthor {
+      width: 100%;
+      height: 100px;
+    }
 
-        .book-content {
-            width: 100%;
-            height: 50px;
-            line-height: 50px;
-            padding-left: 20px;
-            float: left;
-        }
+    .book-content {
+      width: 100%;
+      height: 50px;
+      line-height: 50px;
+      padding-left: 20px;
+      float: left;
+    }
 
-        .book-subcon {
-            width: 100px;
-            font-size: 14px;
-            float: left;
-        }
+    .book-subcon {
+      width: 100px;
+      font-size: 14px;
+      float: left;
+    }
 
-        .book-price,
-        .book-mileage {
-            width: 100%;
-            height: 50px;
-            font-size: 14px;
-        }
+    .book-price,
+    .book-mileage {
+      width: 100%;
+      height: 50px;
+      font-size: 14px;
+    }
 
-        .book-sale {
-            width: 100%;
-            height: 50px;
-            font-size: 14px;
-            color: #e32e32;
-            font-weight: bold;
-        }
+    .book-sale {
+      width: 100%;
+      height: 50px;
+      font-size: 14px;
+      color: #e32e32;
+      font-weight: bold;
+    }
 
-        .book-title {
-            font-size: 20px;
-            font-weight: bold;
-            margin: 10px 15px;
-        }
+    .book-title {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 10px 15px;
+    }
 
-        .book-author {
-            font-size: 15px;
-            margin: 10px 15px;
-        }
+    .book-author {
+      font-size: 15px;
+      margin: 10px 15px;
+    }
 
-        .book-introduce {
-            width: 100%;
-            height: 140px;
-            padding: 30px 20px;
-        }
+    .book-introduce {
+      width: 100%;
+      height: 140px;
+      padding: 30px 20px;
+    }
 
-        .book-introduce h1 , .book-shop h1{
-            font-size: 16px;
-            font-weight: bolder;
-            margin-bottom: 20px;
-        }
+    .book-introduce h1,
+    .book-shop h1 {
+      font-size: 16px;
+      font-weight: bolder;
+      margin-bottom: 20px;
+    }
 
-        .book-introduce p {
-            font-size: 12.5px;
-            max-height: 60px;
-            overflow: hidden;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-        }
+    .book-introduce p {
+      font-size: 12.5px;
+      max-height: 60px;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+    }
 
-        footer {
-            width: 100%;
-            height: 75px;
-            position: fixed;
-            bottom: 0;
-        }
+    footer {
+      width: 100%;
+      height: 75px;
+      position: fixed;
+      bottom: 0;
+    }
 
-        .book-cart-icon {
-            width: 60px;
-            height: 20px;
-            margin: 0 auto;
-        }
+    .book-cart-icon {
+      width: 60px;
+      height: 20px;
+      margin: 0 auto;
+    }
 
-        #cart-icon {
-            width: 60px;
-            height: 20px;
-        }
+    #cart-icon {
+      width: 60px;
+      height: 20px;
+    }
 
-        .book-cart {
-            width: 100%;
-            height: 53px;
-            background-color: #dddddd;
-            padding: 8px 10px;
-        }
+    .book-cart {
+      width: 100%;
+      height: 53px;
+      background-color: #dddddd;
+      padding: 8px 10px;
+    }
 
-        .btn-cart,
-        .btn-money {
-            width: 49%;
-            height: 38px;
-            float: left;
-            font-size: 15px;
-            font-weight: bold;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-        }
+    .btn-cart,
+    .btn-money {
+      width: 49%;
+      height: 38px;
+      float: left;
+      font-size: 15px;
+      font-weight: bold;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+    }
 
-        .btn-cart {
-            background-color: #28a745;
-        }
+    .btn-cart {
+      background-color: #28a745;
+    }
 
-        .btn-money {
-            float: right;
-            background-color: #17a2b8;
-        }
+    .btn-money {
+      float: right;
+      background-color: #17a2b8;
+    }
 
-        .book-shop {
-            padding: 20px;
-            margin-bottom: 70px;
-        }
+    .book-shop {
+      padding: 20px;
+      margin-bottom: 70px;
+    }
 
-        .book-shop a{
-            color: #000;
-            font-size: 14px;
-        }
-        .book-shop P{
-            margin-bottom: 15px;
-        }
-    </style>
+    .book-shop a {
+      color: #000;
+      font-size: 14px;
+    }
+
+    .book-shop P {
+      margin-bottom: 15px;
+    }
+  </style>
 </head>
-
 <body>
-    <header>
-        <a href="list.html"><img id="logo" src="img/logo.gif"></a>
-        <div id="search_box">
-            <input type="text" placeholder="검색" id="title">
-            <button><img id="search_icon"
-                    src="https://cdn1.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-512.png"></button>
-        </div>
-    </header>
-    <section>
-        <div class="book-img">
-            <div class="book-main-img">
-
-            </div>
-        </div>
-        <div class="book-info">
-            <p class="book-title"></p>
-            <p class="book-author"></p>
-        </div>
-        <div class="book-explain">
-            <div class="book-content">
-                <div class="book-subcon">원가</div>
-                <div class="book-price"></div>
-            </div>
-            <div class="book-content">
-                <div class="book-subcon">판매가</div>
-                <div class="book-sale"></div>
-            </div>
-            <div class="book-content">
-                <div class="book-subcon">마일리지</div>
-                <div class="book-mileage"></div>
-            </div>
-        </div>
-        <div class="book-introduce">
-            <h1>책소개</h1>
-            <p></p>
-        </div>
-        <div class="book-shop">
-            <!--9788996819066-->
-            <h1>중고매장</h1>
-        </div>
-    </section>
-    <footer>
-        <div class="book-cart-icon">
-            <img id="cart-icon" src="//image.aladin.co.kr/img/shop/m/icon_basket_remote1_new2_1.png">
-        </div>
-        <div class="book-cart">
-            <button class="btn-cart">장바구니</button>
-            <button class="btn-money">구매하기</button>
-        </div>
-    </footer>
+  <header>
+    <a href="list.html"><img id="logo" src="img/logo.gif"></a>
+    <div id="search_box">
+      <input type="text" placeholder="검색" id="title">
+      <button>
+        <img id="search_icon" src="https://cdn1.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-512.png">
+      </button>
+    </div>
+  </header>
+  <section>
+    <div class="book-img">
+      <div class="book-main-img">
+      </div>
+    </div>
+    <div class="book-info">
+      <p class="book-title"></p>
+      <p class="book-author"></p>
+    </div>
+    <div class="book-explain">
+      <div class="book-content">
+        <div class="book-subcon">원가</div>
+        <div class="book-price"></div>
+      </div>
+      <div class="book-content">
+        <div class="book-subcon">판매가</div>
+        <div class="book-sale"></div>
+      </div>
+      <div class="book-content">
+        <div class="book-subcon">마일리지</div>
+        <div class="book-mileage"></div>
+      </div>
+    </div>
+    <div class="book-introduce">
+      <h1>책소개</h1>
+      <p></p>
+    </div>
+    <div class="book-shop">
+      <!--9788996819066-->
+      <h1>중고매장</h1>
+    </div>
+  </section>
+  <footer>
+    <div class="book-cart">
+      <button class="btn-cart">장바구니</button>
+      <button class="btn-money">구매하기</button>
+    </div>
+  </footer>
 </body>
+<script src="./js/script.js"></script>
 <script>
-    getParameterByName('isbn');
+  getParameterByName('isbn');
 
-    function getParameterByName(isbn) {
-        var url = window.location.href;
-        isbn = isbn.replace(/[\[\]]/g, "\\$&");
-        var regex = new RegExp("[?&]" + isbn + "(=([^&#]*)|&|#|$)"),
-            results = regex.exec(url);
-        requestList(results[2]);
-        used(results[2]);
-    }
+  function getParameterByName(isbn) {
+    var url = window.location.href;
+    isbn = isbn.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + isbn + "(=([^&#]*)|&|#|$)"),
+      results = regex.exec(url);
+    requestList(results[2]);
+    used(results[2]);
+  }
 
-    function requestList(isbn) {
-        var visbn = isbn;
-        var key = 'ttbbrs07041856003';
-        var url = 'http://www.aladin.co.kr/ttb/api/ItemLookUp.aspx';
-        url += '?' + encodeURIComponent('ttbkey') + '=' + encodeURIComponent(key);
-        url += '&' + encodeURIComponent('itemIdType') + '=' + encodeURIComponent('ISBN13');
-        url += '&' + encodeURIComponent('ItemId') + '=' + encodeURIComponent(visbn);
-        url += '&' + encodeURIComponent('output') + '=' + encodeURIComponent('xml');
-        responseList(url);
-    }
+  function requestList(isbn) {
+    var visbn = isbn;
+    var key = 'ttbbrs07041856003';
+    var url = 'http://www.aladin.co.kr/ttb/api/ItemLookUp.aspx';
+    url += '?' + encodeURIComponent('ttbkey') + '=' + encodeURIComponent(key);
+    url += '&' + encodeURIComponent('itemIdType') + '=' + encodeURIComponent('ISBN13');
+    url += '&' + encodeURIComponent('ItemId') + '=' + encodeURIComponent(visbn);
+    url += '&' + encodeURIComponent('output') + '=' + encodeURIComponent('xml');
+    responseList(url);
+  }
 
-    function responseList(url) {
-        var param = url;
-        var title, link, author, publisher, description, cut, cover, img, priceSales, priceStandard, milleage;
+  function responseList(url) {
+    var param = url;
+    var title, link, author, publisher, description, cut, cover, img, priceSales, priceStandard, milleage;
 
-        $.get(param, function (res) {
-            var items = $(res).find('item');
-            for (var i = 0; i < items.length; i++) {
-                console.log(items[i]);
-                title = $(items[i]).find('title').text();
-                link = $(items[i]).find('link').text();
-                author = $(items[i]).find('authors > author:first-child()').text();
-                publisher = $(items[i]).find('publisher').text();
-                description = $(items[i]).find('description').text();
-                cut = description.split('>');
-                cover = $(items[i]).find('cover').text();
-                priceSales = $(items[i]).find('priceSales').text();
-                priceStandard = $(items[i]).find('priceStandard').text();
-                mileage = $(items[i]).find('mileage').text();
-                img = "<img src=" + cover + ">"
-            }
+    $.get(param, function (res) {
+      var items = $(res).find('item');
+      for (var i = 0; i < items.length; i++) {
+        console.log(items[i]);
+        title = $(items[i]).find('title').text();
+        link = $(items[i]).find('link').text();
+        author = $(items[i]).find('authors > author:first-child()').text();
+        publisher = $(items[i]).find('publisher').text();
+        description = $(items[i]).find('description').text();
+        cut = description.split('>');
+        cover = $(items[i]).find('cover').text();
+        priceSales = $(items[i]).find('priceSales').text();
+        priceStandard = $(items[i]).find('priceStandard').text();
+        mileage = $(items[i]).find('mileage').text();
+        img = "<img src=" + cover + ">"
+      }
 
-            $('.book-main-img').append(img);
-            $('.book-title').append(title);
-            $('.book-author').append(author + " (지은이) " + publisher);
-            $('.book-price').append(priceStandard + '원');
-            $('.book-sale').append(priceSales + '원');
-            $('.book-mileage').append(mileage + '원');
-            $('.book-introduce > p').append(cut[2]);
-        });
-    }
+      $('.book-main-img').append(img);
+      $('.book-title').append(title);
+      $('.book-author').append(author + " (지은이) " + publisher);
+      $('.book-price').append(priceStandard + '원');
+      $('.book-sale').append(priceSales + '원');
+      $('.book-mileage').append(mileage + '원');
+      $('.book-introduce > p').append(cut[2]);
+    });
+  }
 
-    function used(isbn) {
-        var isbn13 = isbn ? isbn : true;
-        var ServiceKey = "ttbkkn202841906001";
-        var url = 'http://www.aladin.co.kr/ttb/api/ItemOffStoreList.aspx'; /*URL*/
-        url += '?' + encodeURIComponent('ttbkey') + '=' + encodeURIComponent(ServiceKey);
-        url += '&' + encodeURIComponent('itemIdType') + '=' + encodeURIComponent('ISBN13');
-        url += '&' + encodeURIComponent('ItemId') + '=' + encodeURIComponent(isbn13);
+  function used(isbn) {
+    var isbn13 = isbn ? isbn : true;
+    var ServiceKey = "ttbkkn202841906001";
+    var url = 'http://www.aladin.co.kr/ttb/api/ItemOffStoreList.aspx'; /*URL*/
+    url += '?' + encodeURIComponent('ttbkey') + '=' + encodeURIComponent(ServiceKey);
+    url += '&' + encodeURIComponent('itemIdType') + '=' + encodeURIComponent('ISBN13');
+    url += '&' + encodeURIComponent('ItemId') + '=' + encodeURIComponent(isbn13);
 
-        showInfo(url);
-    }
+    showInfo(url);
+  }
 
-    function showInfo(url) {
-        var info = url;
+  function showInfo(url) {
+    var info = url;
 
-        $.get(info, function (res) {
-            var items = $(res).find("offStoreInfo");
+    $.get(info, function (res) {
+      var items = $(res).find("offStoreInfo");
 
-            for (let i = 0; i < items.length; i++) {
-                console.log(items[i]);
-                var offName = $(items[i]).find('offName').text();
-                var link = $(items[i]).find('link').text();
-                var view = "<p><a href=" + link + ">" + offName + "</a></p>";
+      for (let i = 0; i < items.length; i++) {
+        console.log(items[i]);
+        var offName = $(items[i]).find('offName').text();
+        var link = $(items[i]).find('link').text();
+        var view = "<p><a href=" + link + ">" + offName + "</a></p>";
 
-                $('.book-shop').append(view);
-            }
-        });
-    }
+        $('.book-shop').append(view);
+      }
+    });
+  }
 </script>
-
 </html>

@@ -1,290 +1,290 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="http://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            list-style: none;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="http://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      list-style: none;
+    }
 
-        header {
-            width: 100%;
-            height: 60px;
-            padding: 5px 10px;
-        }
+    header {
+      width: 100%;
+      height: 60px;
+      padding: 5px 10px;
+    }
 
-        #center {
-            margin: 0 auto;
-        }
+    #center {
+      margin: 0 auto;
+    }
 
-        #logo {
-            width: 70px;
-            height: 40px;
-            float: left;
-            margin-right: 20px;
-        }
+    #logo {
+      width: 70px;
+      height: 40px;
+      float: left;
+      margin-right: 20px;
+    }
 
-        @media(max-width:321px) {
-            #logo {
-                margin-right: 10px;
-            }
-        }
+    @media(max-width:321px) {
+      #logo {
+        margin-right: 10px;
+      }
+    }
 
-        #search_box {
-            width: calc(100% - 20px - 70px - 10px);
-            height: 35px;
-            float: left;
-            border-radius: 20px;
-            background-color: rgb(219, 219, 219);
-            padding: 5px 20px;
-            margin-top: 5px;
-        }
+    #search_box {
+      width: calc(100% - 20px - 70px - 10px);
+      height: 35px;
+      float: left;
+      border-radius: 20px;
+      background-color: rgb(219, 219, 219);
+      padding: 5px 20px;
+      margin-top: 5px;
+    }
 
-        @media(max-width:321px) {
-            #search_box {
-                width: 70%;
-            }
-        }
+    @media(max-width:321px) {
+      #search_box {
+        width: 70%;
+      }
+    }
 
-        #search_box input {
-            width: 90%;
-            float: left;
-            border: 0px;
-            outline: none;
-            font-size: 16px;
-            background-color: rgb(219, 219, 219);
-            padding-top: 5px;
-        }
+    #search_box input {
+      width: 90%;
+      float: left;
+      border: 0px;
+      outline: none;
+      font-size: 16px;
+      background-color: rgb(219, 219, 219);
+      padding-top: 5px;
+    }
 
-        #search_box button {
-            width: 10%;
-            height: 100%;
-            float: right;
-            border: 0px;
-            outline: none;
-            cursor: pointer;
-        }
+    #search_box button {
+      width: 10%;
+      height: 100%;
+      float: right;
+      border: 0px;
+      outline: none;
+      cursor: pointer;
+    }
 
-        #search_box button i {
-            text-align: center;
-            display: inline-block;
-            vertical-align: middle;
-        }
+    #search_box button i {
+      text-align: center;
+      display: inline-block;
+      vertical-align: middle;
+    }
 
-        #search_icon {
-            width: 25px;
-            height: 25px;
-            float: right;
-        }
+    #search_icon {
+      width: 25px;
+      height: 25px;
+      float: right;
+    }
 
-        #list {
-            width: 100%;
-        }
+    #list {
+      width: 100%;
+    }
 
-        #list .main {
-            position: relative;
-            width: 100%;
-            height: 220px;
-            overflow: hidden;
-        }
+    #list .main {
+      position: relative;
+      width: 100%;
+      height: 220px;
+      overflow: hidden;
+    }
 
-        #list .main div {
-            position: absolute;
-            top: 0;
-            left: 100%;
-            width: 100%;
-            height: 100%;
-        }
+    #list .main div {
+      position: absolute;
+      top: 0;
+      left: 100%;
+      width: 100%;
+      height: 100%;
+    }
 
-        #list .main div:first-child {
-            left: 0;
-        }
+    #list .main div:first-child {
+      left: 0;
+    }
 
-        #list .main div img {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            height: 100%;
-        }
+    #list .main div img {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 100%;
+    }
 
-        #list section {
-            width: 100%;
-            height: 400px;
-        }
+    #list section {
+      width: 100%;
+      height: 400px;
+    }
 
-        #list section .book {
-            width: 100%;
-            height: 200px;
-        }
+    #list section .book {
+      width: 100%;
+      height: 200px;
+    }
 
-        #list section .book h3 {
-            height: 50px;
-            line-height: 50px;
-            padding: 0 5vw;
-        }
+    #list section .book h3 {
+      height: 50px;
+      line-height: 50px;
+      padding: 0 5vw;
+    }
 
-        #list section .book ul {
-            position: relative;
-            width: 100%;
-            height: 140px;
-            overflow-x: scroll;
-            overflow-y: hidden;
-        }
+    #list section .book ul {
+      position: relative;
+      width: 100%;
+      height: 140px;
+      overflow-x: scroll;
+      overflow-y: hidden;
+    }
 
-        #list section .book ul li {
-            position: absolute;
-            top: 0;
-            left: 0;
-            white-space: nowrap;
-            list-style: none;
-            width: calc(100%/3);
-            height: 100%;
-        }
+    #list section .book ul li {
+      position: absolute;
+      top: 0;
+      left: 0;
+      white-space: nowrap;
+      list-style: none;
+      width: calc(100%/3);
+      height: 100%;
+    }
 
-        #list section .book ul li div {
-            width: 85px;
-            height: 125px;
-            margin: 0 auto;
-        }
+    #list section .book ul li div {
+      width: 85px;
+      height: 125px;
+      margin: 0 auto;
+    }
 
-        #list section .book ul li div img {
-            width: 85px;
-            height: 125px;
-        }
-    </style>
-    <title>aladin list</title>
+    #list section .book ul li div img {
+      width: 85px;
+      height: 125px;
+    }
+  </style>
+  <title>aladin list</title>
 </head>
 
 <body>
-    <div id="list">
-        <header>
-            <a href="list.html"><img id="logo" src="img/logo.gif"></a>
-            <div id="search_box">
-                <input type="text" placeholder="검색" id="title">
-                <button><img id="search_icon"
-                        src="https://cdn1.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-512.png"></button>
-            </div>
-        </header>
-        <div class="main">
-            <div style="background-color: rgb(132, 88, 175)">
-                <img src="./img/list/2-1.jpg" alt="slide">
-            </div>
-            <div style="background-color: rgb(241, 109, 105)">
-                <img src="./img/list/2-2.jpg" alt="slide">
-            </div>
-            <div style="background-color: rgb(86, 157, 1)">
-                <img src="./img/list/2-3.jpg" alt="slide">
-            </div>
-            <div style="background-color: rgb(195, 52, 48)">
-                <img src="./img/list/2-4.jpg" alt="slide">
-            </div>
-            <div style="background-color: rgb(27, 88, 169)">
-                <img src="./img/list/2-5.jpg" alt="slide">
-            </div>
-        </div>
-        <section>
-            <div class="book">
-                <h3>베스트 셀러</h3>
-                <ul id="bestSeller"></ul>
-            </div>
-            <div class="book">
-                <h3>이 달의 도서</h3>
-                <ul id="itemNewSpecial"></ul>
-            </div>
-        </section>
+  <div id="list">
+    <header>
+      <a href="list.html"><img id="logo" src="img/logo.gif"></a>
+      <div id="search_box">
+        <input type="text" placeholder="검색" id="title">
+        <button>
+          <img id="search_icon" src="https://cdn1.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-512.png">
+        </button>
+      </div>
+    </header>
+    <div class="main">
+      <div style="background-color: rgb(132, 88, 175)">
+        <img src="./img/list/2-1.jpg" alt="slide">
+      </div>
+      <div style="background-color: rgb(241, 109, 105)">
+        <img src="./img/list/2-2.jpg" alt="slide">
+      </div>
+      <div style="background-color: rgb(86, 157, 1)">
+        <img src="./img/list/2-3.jpg" alt="slide">
+      </div>
+      <div style="background-color: rgb(195, 52, 48)">
+        <img src="./img/list/2-4.jpg" alt="slide">
+      </div>
+      <div style="background-color: rgb(27, 88, 169)">
+        <img src="./img/list/2-5.jpg" alt="slide">
+      </div>
     </div>
-    <script>
-        /* api */
-        var queryType = ['Bestseller', 'ItemNewSpecial'];
-        var left = 0;
+    <section>
+      <div class="book">
+        <h3>베스트 셀러</h3>
+        <ul id="bestSeller"></ul>
+      </div>
+      <div class="book">
+        <h3>이 달의 도서</h3>
+        <ul id="itemNewSpecial"></ul>
+      </div>
+    </section>
+  </div>
+  <script src="./js/script.js"></script>
+  <script>
+    /* api */
+    var queryType = ['Bestseller', 'ItemNewSpecial'];
+    var left = 0;
 
-        function responseList(data, queryType) {
-            var items = $(data).find('item');
-            for (var i = 0; i < items.length; i++) {
-                var item = $(items[i]);
-                var title = $(item).find('title').text();
-                var link = $(item).find('link').text();
-                var isbn13 = $(item).find('isbn13').text();
-                var cover = $(item).find('cover').text();
+    function responseList(data, queryType) {
+      var items = $(data).find('item');
+      for (var i = 0; i < items.length; i++) {
+        var item = $(items[i]);
+        var title = $(item).find('title').text();
+        var link = $(item).find('link').text();
+        var isbn13 = $(item).find('isbn13').text();
+        var cover = $(item).find('cover').text();
 
-                if (queryType != 'Bestseller' && i == 0) left = 0;
+        if (queryType != 'Bestseller' && i == 0) left = 0;
 
-                var list = '<li style="left:' + left + 'px" onclick=ask("' + isbn13 + '")>' +
-                    '<div>' +
-                    '<img src="' + cover + '" alt="' + title + '">' +
-                    '</div>' +
-                    '</li>';
-                var type = queryType == 'Bestseller' ? '#bestSeller' : '#itemNewSpecial';
+        var list = '<li style="left:' + left + 'px" onclick=ask("' + isbn13 + '")>' +
+          '<div>' +
+          '<img src="' + cover + '" alt="' + title + '">' +
+          '</div>' +
+          '</li>';
+        var type = queryType == 'Bestseller' ? '#bestSeller' : '#itemNewSpecial';
 
-                $(type).append(list);
-                left += $(".book li").width();
-            }
-        } // responseList()
+        $(type).append(list);
+        left += $(".book li").width();
+      }
+    } // responseList()
 
-        function requestList(queryType) {
-            var key = 'ttbbrs1051305001';
-            var url = 'http://www.aladin.co.kr/ttb/api/ItemList.aspx';
-            url += '?' + encodeURIComponent('ttbkey') + '=' + encodeURIComponent(key);
-            url += '&' + encodeURIComponent('QueryType') + '=' + encodeURIComponent(queryType);
-            url += '&' + encodeURIComponent('MaxResults') + '=' + encodeURIComponent('10');
-            url += '&' + encodeURIComponent('start') + '=' + encodeURIComponent('1');
-            url += '&' + encodeURIComponent('SearchTarget') + '=' + encodeURIComponent('Book');
-            url += '&' + encodeURIComponent('output') + '=' + encodeURIComponent('xml');
-            url += '&' + encodeURIComponent('Version') + '=' + encodeURIComponent('20131101');
+    function requestList(queryType) {
+      var key = 'ttbbrs1051305001';
+      var url = 'http://www.aladin.co.kr/ttb/api/ItemList.aspx';
+      url += '?' + encodeURIComponent('ttbkey') + '=' + encodeURIComponent(key);
+      url += '&' + encodeURIComponent('QueryType') + '=' + encodeURIComponent(queryType);
+      url += '&' + encodeURIComponent('MaxResults') + '=' + encodeURIComponent('10');
+      url += '&' + encodeURIComponent('start') + '=' + encodeURIComponent('1');
+      url += '&' + encodeURIComponent('SearchTarget') + '=' + encodeURIComponent('Book');
+      url += '&' + encodeURIComponent('output') + '=' + encodeURIComponent('xml');
+      url += '&' + encodeURIComponent('Version') + '=' + encodeURIComponent('20131101');
 
-            $.ajax({
-                url: url,
-                success: function (data) {
-                    responseList(data, queryType);
-                }
-            });
-        } // requestList()
-
-        function ask(isbn) {
-            location.href = "ask.html?isbn=" + isbn;
+      $.ajax({
+        url: url,
+        success: function (data) {
+          responseList(data, queryType);
         }
+      });
+    } // requestList()
 
-        for (var i = 0; i < queryType.length; i++) {
-            requestList(queryType[i]);
-        }
+    function ask(isbn) {
+      location.href = "ask.html?isbn=" + isbn;
+    }
 
-        /* img silde */
-        var img = $(".main div");
-        var last = img.length - 1;
-        var ino = 0;
+    for (var i = 0; i < queryType.length; i++) {
+      requestList(queryType[i]);
+    }
 
-        function slide() {
-            $(img[ino]).siblings('img').css({
-                'left': '100%'
-            });
+    /* img silde */
+    var img = $(".main div");
+    var last = img.length - 1;
+    var ino = 0;
 
-            $(img[ino]).animate({
-                'left': '-100%'
-            }, 2000, function () {
-                $(this).css({
-                    'left': '100%'
-                });
-            });
+    function slide() {
+      $(img[ino]).siblings('img').css({
+        'left': '100%'
+      });
 
-            ino++;
-            if (ino > last) ino = 0;
+      $(img[ino]).animate({
+        'left': '-100%'
+      }, 2000, function () {
+        $(this).css({
+          'left': '100%'
+        });
+      });
 
-            $(img[ino]).animate({
-                'left': 0,
-            }, 2000);
-        }
+      ino++;
+      if (ino > last) ino = 0;
 
-        setInterval(slide, 2000);
-    </script>
+      $(img[ino]).animate({
+        'left': 0,
+      }, 2000);
+    }
+
+    setInterval(slide, 2000);
+  </script>
 </body>
-
 </html>
