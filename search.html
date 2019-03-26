@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -98,27 +97,24 @@
       height: 25px;
       overflow: hidden;
       padding-bottom: 10px;
-      text-overflow:ellipsis; 
-      white-space:nowrap;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     span.star-prototype,
-    span.star-prototype > * {
+    span.star-prototype>* {
       height: 16px;
       background: url(http://i.imgur.com/YsyS5y8.png) 0 -16px repeat-x;
       width: 80px;
       display: inline-block;
     }
 
-    span.star-prototype > * {
+    span.star-prototype>* {
       background-position: 0 0;
       max-width: 80px;
     }
-
-    
   </style>
 </head>
-
 <body>
   <header>
     <a href="list.html"><img id="logo" src="img/logo.gif"></a>
@@ -131,16 +127,35 @@
   <ul class="list" id="list"></ul>
 </body>
 <script>
-  var title = $('#title').val();
+  var title = '';
+  getThisTitle();
 
-  if(title) getinformation(title);
+  window.addEventListener("hashchange", function () {
+    getThisTitle();
+  }, false);
+
+  function getThisTitle() {
+    title = decodeURI(location.href.split('#')[1]);
+    if (title != undefined) {
+      $('#title').val(title);
+      getinformation(title);
+    }
+  }
 
   $('#title').on('change', function () {
-    title = $(this).val();
+    var thisTitle = $(this).val();
+    if (title != thisTitle) {
+      location.href = 'search.html#' + encodeURI(thisTitle);
+      title = thisTitle;
+    }
     getinformation(title);
   });
 
   function getinformation(title) {
+    $('#title').val('')
+    $('.list li').remove();
+    $('.result').text('');
+
     var search = title ? title : "";
     var ttbkey = 'ttbysasm21451849002';
     var url = 'http://www.aladin.co.kr/ttb/api/ItemSearch.aspx';
@@ -150,7 +165,6 @@
     url += '&' + encodeURIComponent('Query') + '=' + encodeURIComponent(search);
 
     $.get(url, function (res) {
-      console.log(res);
       var items = $(res).find('item');
       var result = '"<b>' + search + '</b>" 검색결과 입니다.';
       for (var i = 0; i < items.length; i++) {
@@ -175,20 +189,8 @@
     });
   }
 
-  function ask(isbn13) {
-    var isbn = isbn13;
+  function ask(isbn) {
     location.href = "ask.html?isbn=" + isbn;
   }
-
-  $.fn.generateStars = function () {
-    return this.each(function (i, e) {
-      $(e).html($('<span/>').width($(e).text() * 16));
-    });
-  };
-
-  // 숫자 평점을 별로 변환하도록 호출하는 함수
-  $('.star-prototype').generateStars();
-
 </script>
-
 </html>
