@@ -58,3 +58,7 @@ function getinformation(title) {
     }
   });
 }
+
+function ask(isbn) {
+  location.href = "ask.html?isbn=" + isbn;
+}
