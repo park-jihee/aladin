@@ -1,3 +1,7 @@
+function ask(isbn) {
+  location.href = "ask.html?isbn=" + isbn;
+}
+
 var title = '';
 getThisTitle();
 
@@ -6,10 +10,26 @@ window.addEventListener("hashchange", function () {
 }, false);
 
 function getThisTitle() {
-  if(location.href.split('#').length == 2) {
-    title = decodeURI(location.href.split('#')[1]); 
+  if (location.href.split('#').length == 2) {
+    title = decodeURI(location.href.split('#')[1]);
     $('#title').val(title);
     getinformation(title);
+  }
+}
+
+function getStar() {
+  var stars = $('.star-prototype');
+  var starList = '';
+  for (let i = 0; i < stars.length; i++) {
+    var star = Math.round(stars[i].dataset.star * 0.5);
+    for (let j = 0; j < star; j++) {
+      starList += "<img src='./img/search/star.png' width='20px'/>"
+    }
+    for (let j = 0; j < 5 - star; j++) {
+      starList += "<img src='./img/search/bin-star.png' width='20px'/>"
+    }
+    stars[i].innerHTML = starList;
+    starList = '';
   }
 }
 
@@ -23,9 +43,6 @@ $('#title').on('change', function () {
 });
 
 function getinformation(title) {
-  $('.list li').remove();
-  $('.result').text('');
-
   var search = title ? title : "";
   var ttbkey = 'ttbysasm21451849002';
   var url = 'http://www.aladin.co.kr/ttb/api/ItemSearch.aspx';
@@ -35,6 +52,8 @@ function getinformation(title) {
   url += '&' + encodeURIComponent('Query') + '=' + encodeURIComponent(search);
 
   $.get(url, function (res) {
+    $('.list li').remove();
+    $('.result').text('');
     var items = $(res).find('item');
     var result = '"<b>' + search + '</b>" 검색결과 입니다.';
     for (var i = 0; i < items.length; i++) {
@@ -48,27 +67,14 @@ function getinformation(title) {
         '<div class="content">' +
         '<p>' + title + '</p>' +
         '<p>' + author + '</p>' +
-        '<span class="star-prototype"></span>' +
-        '<input id="star" type="hidden" value="' + customerReviewRank + '">';
+        '<span class="star-prototype" data-star="' + customerReviewRank + '"></span>' +
         '</div>' +
         '</li>';
       $('.list').append(code);
       if (i == items.length - 1) {
         $('.result').append(result);
       }
-    }
-    var starProto = $('#star');
-    var star = '';
-    for (let i = 0; i < starProto.length; i++) {
-      console.log($(starProto)[i].val);
-      for (let j = 0; j < starProto; j++) {
-        star += "<img src='./img/star.png' width='20px'/>"
-      }
-      $('.star-prototype').append(star);
+      getStar();
     }
   });
-}
-
-function ask(isbn) {
-  location.href = "ask.html?isbn=" + isbn;
 }
