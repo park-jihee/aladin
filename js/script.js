@@ -1,6 +1,7 @@
 function ask(isbn) {
   if(isbn == '') {
-    location.href = "isBookError.html"
+    alert("정보가 없는 책입니다.");
+    return;
   } else {
     location.href = "ask.html?isbn=" + isbn;
   }
@@ -58,10 +59,6 @@ function getinformation(title) {
     $('.list li').remove();
     $('.result').text('');
     var items = $(res).find('item');
-    if(!items.length) {
-      location.href = "isSearchError.html";
-      title = '';
-    }
     var result = '"<b>' + search + '</b>" 검색결과 입니다.';
     for (var i = 0; i < items.length; i++) {
       var title = $(items[i]).find('title').text();

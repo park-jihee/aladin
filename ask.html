@@ -7,7 +7,7 @@
   <link href="//image.aladin.co.kr/img/home/aladin.ico" type="image/x-icon" rel="shortcut icon">
   <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="./css/style.css">
-  <title>aladin</title>
+  <title>알라딘</title>
 </head>
 <body>
   <div id="ask">
@@ -90,7 +90,6 @@
     $.get(param, function (res) {
       var items = $(res).find('item');
       for (var i = 0; i < items.length; i++) {
-        console.log(items[i]);
         title = $(items[i]).find('title').text();
         link = $(items[i]).find('link').text();
         author = $(items[i]).find('authors > author:first-child()').text();
@@ -137,7 +136,6 @@
       var items = $(res).find("offStoreInfo");
 
       for (let i = 0; i < items.length; i++) {
-        console.log(items[i]);
         var offName = $(items[i]).find('offName').text();
         var link = $(items[i]).find('link').text();
         var view = "<p><a href=" + link + ">" + offName + "</a></p>";
