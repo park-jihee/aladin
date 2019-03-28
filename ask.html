@@ -13,7 +13,7 @@
     <header>
       <a href="index.html"><img id="logo" src="img/logo.gif"></a>
       <div id="search_box">
-        <input type="text" placeholder="검색" id="title">
+        <input type="text" placeholder="검색" id="title" autocomplete="off">
         <button>
           <img id="search_icon" src="https://cdn1.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-512.png">
         </button>
@@ -43,11 +43,11 @@
         </div>
       </div>
       <div class="book-introduce">
-        <h1>책소개</h1>
+        <h4>책소개</h4>
         <p></p>
       </div>
       <div class="book-shop">
-        <h1>중고매장</h1>
+        <h4>중고매장</h4>
       </div>
     </section>
     <footer>
@@ -104,7 +104,7 @@
       }
 
       $('.book-main-img').append(img);
-      $('.book-title').append(title);
+      $('.book-title').append('<h3>' + title + '<h3>');
       $('.book-author').append(author + " (지은이) " + publisher);
       $('.book-price').append(priceStandard + '원');
       $('.book-sale').append(priceSales + '원');

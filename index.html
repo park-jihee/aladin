@@ -13,7 +13,7 @@
     <header>
       <a href="index.html"><img id="logo" src="img/logo.gif"></a>
       <div id="search_box">
-        <input type="text" placeholder="검색" id="title">
+        <input type="text" placeholder="검색" id="title" autocomplete="off">
         <button>
           <img id="search_icon" src="https://cdn1.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-512.png">
         </button>
@@ -94,10 +94,6 @@
         }
       });
     } // requestList()
-
-    function ask(isbn) {
-      location.href = "ask.html?isbn=" + isbn;
-    }
 
     for (var i = 0; i < queryType.length; i++) {
       requestList(queryType[i]);

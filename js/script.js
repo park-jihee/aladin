@@ -1,5 +1,9 @@
 function ask(isbn) {
-  location.href = "ask.html?isbn=" + isbn;
+  if(isbn == '') {
+    location.href = "isBookError.html"
+  } else {
+    location.href = "ask.html?isbn=" + isbn;
+  }
 }
 
 var title = '';
@@ -21,12 +25,12 @@ function getStar() {
   var stars = $('.star-prototype');
   var starList = '';
   for (let i = 0; i < stars.length; i++) {
-    var star = Math.round(stars[i].dataset.star * 0.5);
+    var star = Math.floor(stars[i].dataset.star * 0.5);
     for (let j = 0; j < star; j++) {
-      starList += "<img src='./img/search/star.png' width='20px'/>"
+      starList += "<img src='./img/search/star.png' width='17.5px'/>"
     }
     for (let j = 0; j < 5 - star; j++) {
-      starList += "<img src='./img/search/bin-star.png' width='20px'/>"
+      starList += "<img src='./img/search/bin-star.png' width='17.5px'/>"
     }
     stars[i].innerHTML = starList;
     starList = '';
@@ -37,7 +41,6 @@ $('#title').on('change', function () {
   var thisTitle = $(this).val();
   if (title != thisTitle) {
     location.href = 'search.html#' + encodeURI(thisTitle);
-    title = thisTitle;
   }
   getinformation(title);
 });
@@ -55,6 +58,10 @@ function getinformation(title) {
     $('.list li').remove();
     $('.result').text('');
     var items = $(res).find('item');
+    if(!items.length) {
+      location.href = "isSearchError.html";
+      title = '';
+    }
     var result = '"<b>' + search + '</b>" 검색결과 입니다.';
     for (var i = 0; i < items.length; i++) {
       var title = $(items[i]).find('title').text();
@@ -66,7 +73,7 @@ function getinformation(title) {
         '<img src="' + cover + '">' +
         '<div class="content">' +
         '<p>' + title + '</p>' +
-        '<p>' + author + '</p>' +
+        '<p class="author">' + author + '</p>' +
         '<span class="star-prototype" data-star="' + customerReviewRank + '"></span>' +
         '</div>' +
         '</li>';
