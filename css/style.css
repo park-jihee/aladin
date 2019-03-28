@@ -34,7 +34,6 @@ header a {
   float: left;
   width: calc(100% - 25px);
   height: 100%;
-  margin-top: -2px;
   border: 0;
   outline: none;
   font-size: 14px;
@@ -308,4 +307,20 @@ header a {
 #isBookError section {
   text-align: center;
   padding: 20px 0;
+}
+
+@media ( min-width: 426px ) {
+  #index section .book ul li {
+    width: calc(100%/4);
+  }
+}
+@media ( min-width: 768px ) {
+  #index section .book ul li {
+    width: calc(100%/5);
+  }
+}
+@media ( min-width: 1024px ) {
+  #index section .book ul li {
+    width: calc(100%/6);
+  }
 }
