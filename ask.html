@@ -98,21 +98,26 @@
         description = $(items[i]).find('description').text();
         cut = description.split('>');
         cover = $(items[i]).find('cover').text();
-        priceSales = $(items[i]).find('priceSales').text();
-        priceStandard = $(items[i]).find('priceStandard').text();
-        mileage = $(items[i]).find('mileage').text();
-        img = "<img src=" + cover + ">"
+        priceSales = parseInt($(items[i]).find('priceSales').text());
+        priceStandard = parseInt($(items[i]).find('priceStandard').text());
+        mileage = parseInt($(items[i]).find('mileage').text());
+        img = "<img src=" + cover + ">";
       }
-
-      $('.book-main-img').append(img);
-      $('.book-title').append('<h3>' + title + '<h3>');
-      $('.book-author').append(author + " (지은이) " + publisher);
-      $('.book-price').append(priceStandard + '원');
-      $('.book-sale').append(priceSales + '원');
-      $('.book-mileage').append(mileage + '원');
-      $('.book-introduce > p').append(cut[2]);
-    });
-  }
+      
+        priceSales = (Number(priceSales).toLocaleString('en'));
+        priceStandard = (Number(priceStandard).toLocaleString('en'));
+        mileage = (Number(mileage).toLocaleString('en'));
+        
+        $('.book-main-img').append(img);
+        $('.book-title').append('<h3>' + title + '<h3>');
+        $('.book-author').append(author + " (지은이) " + publisher);
+        $('.book-price').append(priceStandard + '원');
+        $('.book-sale').append(priceSales + '원');
+        $('.book-mileage').append(mileage + '원');
+        $('.book-introduce > p').append(cut[2]);
+        
+      });
+    }
 
   function used(isbn) {
     var isbn13 = isbn ? isbn : true;
